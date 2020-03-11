@@ -28,7 +28,8 @@ class Solution:
     def sortedListToBST(self, head: ListNode) -> TreeNode:
         if not head:
             return None
-       
+        if not head.next:
+            return TreeNode(head.val)
         prev = step1 = step2 = head
         
         while step2 and step2.next:
