@@ -26,6 +26,7 @@ class Solution:
         # res.append(root.val)
         # return res
 
+        
         #非递归
         res, stack = [], [root]
         cur, last = root, root
