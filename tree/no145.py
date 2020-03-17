@@ -35,7 +35,7 @@ class Solution:
                 cur = cur.left
             else:
                 cur = stack[-1]
-                if not cur.right or last==cur:
+                if not cur.right or last==cur.right:
                     res.append(cur.val)
                     stack.pop()
                     last = cur
