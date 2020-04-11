@@ -36,3 +36,12 @@
 
 class Solution:
     def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        if not s:
+            return False
+        return self.isSubtree(s.left, t) or self.isSubtree(s.right, t) or self.same(s, t)
+    def same(self, s, t):
+        if not s and not t:
+            return True
+        if not s or not t or s.val != t.val:
+            return False
+        return self.same(s.left, t.left) and self.same(s.right, t.right)

@@ -18,3 +18,20 @@ class Node:
 
 class Solution:
     def preorder(self, root: 'Node') -> List[int]:
+        # 递归
+        # if not root:
+        #     return []
+        # res = [root.val]
+        # for node in root.children:
+        #     res += self.preorder(node)
+        # return res
+        # N叉树非递归时，取栈第0个就是层序遍历，取栈最后一个就是深度遍历
+        if not root:
+            return []
+        stack, res = [root],[]
+        while stack:
+            cur = stack.pop()
+            res.append(cur.val)
+            for node in cur.children[::-1]: # 栈的性质
+                stack.append(node)
+        return res

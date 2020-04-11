@@ -18,4 +18,20 @@
 #         self.right = None
 
 class Solution:
+    mxl = 0;
     def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        self.dfs(root);
+        return self.mxl;
+
+    def dfs(self, root):
+        if not root:
+            return 0;
+        le,ri = 0,0;
+        if root.left:
+            le = self.dfs(root.left) + 1;
+        if root.right:
+            ri = self.dfs(root.right) + 1;
+        if self.mxl < (le+ri):
+            self.mxl = le+ri;
+        return max(le, ri);
+        

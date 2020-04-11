@@ -25,3 +25,11 @@
 
 class Solution:
     def findTilt(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        return abs(self.sum(root.left)-self.sum(root.right))+self.findTilt(root.left)+self.findTilt(root.right)
+
+    def sum(self, root):
+        if not root:
+            return 0
+        return root.val + self.sum(root.left) + self.sum(root.right)

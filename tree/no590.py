@@ -18,3 +18,21 @@ class Node:
 
 class Solution:
     def postorder(self, root: 'Node') -> List[int]:
+        # 递归
+        # if not root:
+        #     return []
+        # res = []
+        # for node in root.children:
+        #     res += self.postorder(node)
+        # res.append(root.val)
+        # return res
+
+        if not root:
+            return []
+        stack,res = [root], []
+        while stack:
+            cur = stack.pop()
+            for node in cur.children:
+                stack.append(node)
+            res.insert(0, cur.val)
+        return res

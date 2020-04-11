@@ -22,3 +22,11 @@ class Node:
 
 class Solution:
     def maxDepth(self, root: 'Node') -> int:
+        if not root:
+            return 0;
+        if not root.children:
+            return 1;
+        d = 0;
+        for node in root.children:
+            d = max(d, self.maxDepth(node)+1);
+        return d;
