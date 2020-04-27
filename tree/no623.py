@@ -44,11 +44,24 @@
 # 输入的二叉树至少有一个节点。
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
     def addOneRow(self, root: TreeNode, v: int, d: int) -> TreeNode:
+        if not root:
+            return None
+        if d == 1:
+            le = TreeNode(v)
+            ri = TreeNode(v)
+            le.left = root.left
+            ri.right = root.right
+            root.left = le
+            root.right = ri
+            return 
+        self.addOneRow(root.left, v, d-1)
+        self.addOneRow(root.right, v, d-1)
+        return root

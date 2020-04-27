@@ -18,11 +18,26 @@
 # 给定的数组的大小在 [1, 1000] 之间。
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
     def constructMaximumBinaryTree(self, nums: List[int]) -> TreeNode:
+        if not nums:
+            return None
+        p = nums[self.getMaxNumPos(nums)]
+        root = TreeNode(p)
+        root.left = self.constructMaximumBinaryTree(nums[0:p])
+        root.right = self.constructMaximumBinaryTree(nums[p+1:])
+        return root
+    
+    def getMaxNumPos(self, nums):
+        maxx, count = 0, 0
+        for i in range(nums):
+            if nums[i] > maxx:
+                maxx = nums[i]
+                count = i
+        return count

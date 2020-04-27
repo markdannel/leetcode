@@ -18,11 +18,37 @@
 # 说明: 最小的值是 2, 但是不存在第二小的值。
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
     def findSecondMinimumValue(self, root: TreeNode) -> int:
+        if not root:
+            return -1
+        minn, minn2 = root.val, root.val
+        stack = [root]
+        while stack:
+            cur = stack.pop(0)
+            if cur.val > minn:
+                if minn2 > cur.val or minn == minn2:
+                    minn2 = cur.val
+                else:
+                    continue
+            if cur.left:
+                stack.append(cur.left)
+                stack.append(cur.right)
+        return minn2
+
+s = Solution()
+root = TreeNode(2)
+root.left = TreeNode(2)
+root.right = TreeNode(5)
+root.left.left = TreeNode(2)
+root.left.right = TreeNode(4)
+root.left.left.left = TreeNode(3)
+root.left.left.right = TreeNode(6)
+r = s.findSecondMinimumValue(root)
+print(r)
