@@ -24,15 +24,18 @@
 class Solution:
     def findMode(self, root: TreeNode) -> List[int]:
         if not root:
-            return None;
-        res = [];
-        self.inorder(root, res);
+            return []
+        counter = collections.Counter()
+        def inorder(node):
+            if not node:
+                return
+            inorder(node.left)
+            inorder(node.right)
+            counter[node.val] += 1
+        inorder(root)
+        res = []
+        maxx = max(counter.values())
+        for k,v in counter.items():
+            if v==maxx:
+                res.append(k)
         return res;
-    
-    def inorder(self, root, res):
-        if not root:
-            return 0;
-        le = self.inorder(root.left);
-        
-        ri = self.inorder(root.right);
-        return max(le, ri);

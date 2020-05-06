@@ -16,4 +16,19 @@
 # 说明: 1 <= N <= 10000
 
 class Solution:
-    def sumOfDistancesInTree(self, N: int, edges: List[List[int]]) -> List[int]:
+    def sumOfDistancesInTree(self, N: int, edges):
+        pass
+    def findRoad(self, edges, s, e):
+        pass
+    def buildMap(self, edges, N):
+        res = [[] for i in range(N)]
+        for f,s in edges:
+            res[f].append((s, 1))
+            res[s].append((f, 1))
+        
+        print(res)
+        print("1",res[1])
+        print("2",res[2])
+s = Solution()
+N, edges =  6,[[0,1],[0,2],[2,3],[2,4],[2,5]]
+s.buildMap(edges, N)

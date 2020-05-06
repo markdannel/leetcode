@@ -17,12 +17,23 @@
 # 因此，你需要以列表的形式返回上述重复子树的根结点。
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
     def findDuplicateSubtrees(self, root: TreeNode) -> List[TreeNode]:
-        
+        counter = collections.Counter()
+        ans = []
+        def dfs(node):
+            if not node:
+                return "#"
+            r = "{},{},{}".format(node.val, dfs(node.left), dfs(node.right))
+            counter[r] += 1
+            if counter[r] == 2:
+                ans.append(node)
+            return r
+        dfs(root)
+        return ans

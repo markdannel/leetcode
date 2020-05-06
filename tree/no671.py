@@ -40,15 +40,17 @@ class Solution:
             if cur.left:
                 stack.append(cur.left)
                 stack.append(cur.right)
+        if minn == minn2:
+            return -1
         return minn2
 
 s = Solution()
 root = TreeNode(2)
 root.left = TreeNode(2)
-root.right = TreeNode(5)
+root.right = TreeNode(2)
 root.left.left = TreeNode(2)
 root.left.right = TreeNode(4)
-root.left.left.left = TreeNode(3)
+root.left.left.left = TreeNode(5)
 root.left.left.right = TreeNode(6)
 r = s.findSecondMinimumValue(root)
 print(r)

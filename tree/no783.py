@@ -26,3 +26,16 @@
 
 class Solution:
     def minDiffInBST(self, root: TreeNode) -> int:
+        def dfs(root):
+            if not root:
+                return []
+            res = []
+            res += dfs(root.left)
+            res.append(root.val)
+            res += dfs(root.right)
+            return res
+        r = dfs(root)
+        minn = r[len(r)-1]
+        for i in range(1,len(r)):
+            minn = min(minn, r[i] - r[i-1])
+        return minn

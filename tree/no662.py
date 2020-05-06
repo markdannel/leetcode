@@ -49,4 +49,20 @@
 
 class Solution:
     def widthOfBinaryTree(self, root: TreeNode) -> int:
-        
+        if not root:
+            return 0
+        stack,levelEnd = [(root, 0, 0)],[]
+        while stack:
+            node, lvl, num = stack.pop(0)
+            if len(levelEnd) == lvl:
+                levelEnd.append([num, num])
+            if levelEnd[lvl]:
+                levelEnd[lvl][1] = num
+            if node.left:
+                stack.append((node.left, lvl+1, 2*num))
+            if node.right:
+                stack.append((node.right, lvl+1, 2*num+1))
+        maxx = 0
+        for f,s in levelEnd:
+            maxx = max(maxx, s-f)
+        return maxx+1

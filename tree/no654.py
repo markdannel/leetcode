@@ -25,19 +25,28 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    def constructMaximumBinaryTree(self, nums: List[int]) -> TreeNode:
+    def constructMaximumBinaryTree(self, nums) -> TreeNode:
         if not nums:
             return None
-        p = nums[self.getMaxNumPos(nums)]
-        root = TreeNode(p)
+        po = max(nums)
+        p = nums.index(po)
+        root = TreeNode(po)
         root.left = self.constructMaximumBinaryTree(nums[0:p])
         root.right = self.constructMaximumBinaryTree(nums[p+1:])
         return root
     
-    def getMaxNumPos(self, nums):
-        maxx, count = 0, 0
-        for i in range(nums):
-            if nums[i] > maxx:
-                maxx = nums[i]
-                count = i
-        return count
+    # def getMaxNumPos(self, nums):
+    #     maxx, count = 0, 0
+    #     for k,v in nums.items():
+    #         if v > maxx:
+    #             maxx = v
+    #             count = k
+    #     return 
+        
+s = Solution()
+nums = [3,2,1,6,0,5]
+root = s.constructMaximumBinaryTree(nums)
+print(root.val)
+print(root.left.val)
+print(root.right.val)
+print(root.left.right.val)
