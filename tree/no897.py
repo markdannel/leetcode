@@ -32,11 +32,30 @@
 # 每个结点都有一个从 0 到 1000 范围内的唯一整数值。
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
     def increasingBST(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return None
+        self.rt = self.cur = TreeNode(0)
+        def dfs(node):
+            if not node:
+                return
+            dfs(node.left)
+            self.cur.right=TreeNode(node.val)
+            self.cur = self.cur.right
+            dfs(node.right)
+        dfs(root)
+        return self.rt.right
+s = Solution()
+root = TreeNode(2)
+root.left = TreeNode(1)
+root.right = TreeNode(3)
+res = s.increasingBST(root)
+print(res.val)
+print(res.right.val)

@@ -14,11 +14,21 @@
 # 给定的两颗树上的值介于 0 到 200 之间。
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
     def leafSimilar(self, root1: TreeNode, root2: TreeNode) -> bool:
+        def fetchLeafNode(node):
+            if not node:
+                return []
+            res = []
+            res += fetchLeafNode(node.left)
+            if not node.left and not node.right:
+                res.append(node.val)
+            res += fetchLeafNode(node.right)
+            return res
+        return fetchLeafNode(root1) == fetchLeafNode(root2)
