@@ -19,3 +19,7 @@
 
 class Solution:
     def numDecodings(self, s: str) -> int:
+        m = len(s)
+        if m==0:
+            return 0
+        
