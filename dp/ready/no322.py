@@ -17,4 +17,17 @@
 # 你可以认为每种硬币的数量是无限的。
 
 class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int:
+    def coinChange(self, coins: [int], amount: int) -> int:
+        if not coins: return -1
+        dp=[i for i in range(amount+1)]
+        for i in range(1,amount+1):
+            for c in coins:
+                if i-c>=0:
+                    if dp[i-c]==-1: dp[i] = -1
+                    else: dp[i] = min(dp[i], dp[i-c]+1)
+                else:
+                    dp[i]=-1
+        return dp[amount]
+
+s=Solution()
+print(s.coinChange([2,5],11))

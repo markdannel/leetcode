@@ -15,4 +15,14 @@
 # 如果你可以只使用 O(n) 的额外空间（n 为三角形的总行数）来解决这个问题，那么你的算法会很加分。
 
 class Solution:
-    def minimumTotal(self, triangle: List[List[int]]) -> int:
+    def minimumTotal(self, triangle) -> int:
+        n = len(triangle)
+        if n==0: return 0
+        res = triangle[0][0]
+        dp = [0 for i in range(n+1)]
+        for i in range(n-1,-1,-1):
+            for j in range(0,i+1):
+                dp[j] = min(dp[j],dp[j+1])+triangle[i][j]
+        return dp[0]
+s = Solution()
+print(s.minimumTotal([[2],[3,4],[6,5,7],[4,1,8,-5]]))

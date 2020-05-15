@@ -12,4 +12,5 @@
 # 输出: 4
 
 class Solution:
-    def maximalSquare(self, matrix: List[List[str]]) -> int:
+    def maximalSquare(self, matrix: [[str]]) -> int:
+        
