@@ -27,12 +27,13 @@
 class CBTInserter:
 
     def __init__(self, root: TreeNode):
-        
+        self.root = root
 
     def insert(self, v: int) -> int:
-        
+        pass
 
     def get_root(self) -> TreeNode:
+        return self.root
         
 
 

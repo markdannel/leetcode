@@ -17,3 +17,7 @@ class TreeNode:
 
 class Solution:
     def constructFromPrePost(self, pre: List[int], post: List[int]) -> TreeNode:
+        if not pre:
+            return None
+        r = pre.pop(0)
+        
